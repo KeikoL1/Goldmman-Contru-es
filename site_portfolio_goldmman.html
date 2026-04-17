@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Goldmman - Construções e Reformas</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
+    body {
+      background: linear-gradient(180deg, #f5f5f5 0%, #eaeaea 100%);
+      color: #333;
+    }
+
+    header {
+      background: #111;
+      color: white;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    header h1 { color: gold; }
+
+    nav a {
+      color: white;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    nav a:hover { color: gold; }
+
+    .hero {
+      height: 90vh;
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1503387762-592deb58ef4e') center/cover;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+      gap: 20px;
+    }
+
+    .hero h2 {
+      font-size: 3rem;
+      background: rgba(0,0,0,0.6);
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 900px;
+    }
+
+    .cta-btn {
+      background: gold;
+      color: black;
+      padding: 14px 28px;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+
+    .cta-btn:hover { opacity: 0.85; }
+
+    section {
+      padding: 60px 40px;
+      max-width: 1200px;
+      margin: auto;
+      background: linear-gradient(180deg, #ffffff 0%, #f7f7f7 100%);
+      border-radius: 10px;
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    section:nth-of-type(even) {
+      background: linear-gradient(180deg, #f2f2f2 0%, #eaeaea 100%);
+    }
+
+    section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%) scaleX(0);
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, gold, transparent);
+      border-radius: 2px;
+      opacity: 0;
+      animation: dividerAnim 0.8s ease forwards;
+    }
+
+    @keyframes dividerAnim {
+      from {
+        transform: translateX(-50%) scaleX(0);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(-50%) scaleX(1);
+        opacity: 0.6;
+      }
+    }
+
+    h2 { margin-bottom: 20px; position: relative; display: inline-block; }
+
+    h2::after {
+      content: "";
+      display: block;
+      width: 50px;
+      height: 3px;
+      background: gold;
+      margin-top: 8px;
+      border-radius: 2px;
+      opacity: 0.8;
+      transform: scaleX(0);
+      transform-origin: left;
+      animation: underlineGrow 0.6s ease forwards;
+    }
+
+    @keyframes underlineGrow {
+      from {
+        transform: scaleX(0);
+        opacity: 0;
+      }
+      to {
+        transform: scaleX(1);
+        opacity: 0.8;
+      }
+    }
+
+    .about p { line-height: 1.6; max-width: 800px; }
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: linear-gradient(180deg, #ffffff, #f2f2f2);
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: 0.3s;
+    }
+
+    .card:hover { transform: translateY(-5px); }
+
+    /* Projetos profissionais */
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .project-card {
+      background: linear-gradient(180deg, #ffffff, #f2f2f2);
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: 0.3s;
+    }
+
+    .project-card:hover { transform: translateY(-5px); }
+
+    .project-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .project-info {
+      padding: 15px;
+    }
+
+    .project-info h3 { margin-bottom: 5px; }
+
+    .project-info p { font-size: 0.9rem; color: #555; }
+
+    /* Diferenciais */
+    .diferenciais {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .diferencial-item {
+      background: linear-gradient(180deg, #ffffff, #f2f2f2);
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    .diferencial-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .contact form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .contact input, .contact textarea {
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .contact button {
+      background: gold;
+      border: none;
+      padding: 12px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    footer {
+      background: #111;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+
+    /* Clientes com logos (estilo construtora) */
+    .clientes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 30px;
+      align-items: center;
+    }
+
+    .cliente-card {
+      background: linear-gradient(180deg, #ffffff, #f2f2f2);
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100px;
+      transition: 0.3s;
+    }
+
+    .cliente-card img {
+      max-width: 100%;
+      max-height: 60px;
+      filter: grayscale(100%);
+      opacity: 0.7;
+      transition: 0.3s;
+    }
+
+    .cliente-card:hover img {
+      filter: grayscale(0%);
+      opacity: 1;
+      transform: scale(1.05);
+    }
+      to { transform: translateX(-50%); }
+    }
+
+    .whatsapp {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #25D366;
+      color: white;
+      padding: 15px;
+      border-radius: 50%;
+      text-decoration: none;
+      font-size: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Goldmman</h1>
+  <nav>
+    <a href="#">Início</a>
+    <a href="#about">Sobre</a>
+    <a href="#missao">Missão</a>
+    <a href="#objetivos">Objetivos</a>
+    <a href="#services">Serviços</a>
+    <a href="#areas">Áreas de Atuação</a>
+    <a href="#projetos">Projetos</a>
+    <a href="#contact">Contato</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h2>Transformamos sua obra em um investimento de valor e qualidade</h2>
+  <a href="#contact" class="cta-btn">Solicitar orçamento gratuito</a>
+</section>
+
+<section id="about" class="about">
+  <h2>Sobre a Goldmman</h2>
+  <p>
+    Na Goldmman, cada projeto é planejado para entregar mais do que uma obra: entregamos segurança, valorização do seu imóvel e tranquilidade durante todo o processo.
+  </p>
+  <br>
+  <p>
+    Trabalhamos com construção civil e reformas, atendendo clientes que exigem qualidade, organização e cumprimento de prazos.
+  </p>
+</section>
+
+<section id="missao" class="about">
+  <h2>Missão</h2>
+  <p>
+    A missão da Goldmman é consolidar confiança nas parcerias com nossos clientes, para conquistar cada vez mais, garantindo a produtividade e qualidade na execução dos serviços contratados.
+  </p>
+</section>
+
+<section id="objetivos" class="about">
+  <h2>Objetivos</h2>
+  <p>
+    A Empresa Goldmman possui uma experiência no ramo da Construção Civil com uma equipe tecnicamente capacitada e mão-de-obra especializada, associada a um alto grau de informatização, fiscalização e gerenciamento dos projetos, garantindo uma sólida posição no mercado, conquistada junto aos seus clientes.
+  </p>
+  <br>
+  <p>
+    Com departamentos altamente qualificados e capacitados, unindo tecnologia e modernidade com o objetivo de atingir a Qualidade Total, para oferecer o melhor custo-benefício.
+  </p>
+</section>
+
+<section id="services">
+  <h2>Serviços</h2>
+  <div class="services">
+    <div class="card">
+      <h3>Reformas</h3>
+      <p>Modernizamos e valorizamos seu imóvel com acabamento profissional.</p>
+    </div>
+    <div class="card">
+      <h3>Construção do zero</h3>
+      <p>Executamos sua obra com planejamento, segurança e alto padrão.</p>
+    </div>
+    <div class="card">
+      <h3>Acabamentos</h3>
+      <p>Detalhes que elevam o nível e o valor do seu projeto.</p>
+    </div>
+  </div>
+</section>
+
+<section id="areas">
+  <h2>Áreas de Atuação</h2>
+  <div class="diferenciais">
+    <div class="diferencial-item">Comerciais</div>
+    <div class="diferencial-item">Hospitalares</div>
+    <div class="diferencial-item">Hipermercados</div>
+    <div class="diferencial-item">Residências</div>
+    <div class="diferencial-item">Obras Viárias</div>
+    <div class="diferencial-item">Metroviárias</div>
+    <div class="diferencial-item">Recuperações Estruturais</div>
+    <div class="diferencial-item">Industriais</div>
+  </div>
+</section>
+
+<section>
+  <h2>Diferenciais</h2>
+  <div class="diferenciais">
+    <div class="diferencial-item">✔ Cumprimento de prazos</div>
+    <div class="diferencial-item">✔ Equipe qualificada</div>
+    <div class="diferencial-item">✔ Atendimento rápido</div>
+    <div class="diferencial-item">✔ Qualidade garantida</div>
+  </div>
+</section>
+
+<section id="clientes">
+  <h2>Nossos Clientes</h2>
+  <div class="clientes-grid">
+    <div class="cliente-card">
+      <img src="https://via.placeholder.com/150x60?text=Andrade+Gutierrez" alt="Andrade Gutierrez">
+    </div>
+
+    <div class="cliente-card">
+      <img src="https://via.placeholder.com/150x60?text=Autoban" alt="Autoban">
+    </div>
+
+    <div class="cliente-card">
+      <img src="https://via.placeholder.com/150x60?text=Fernão+Dias" alt="Autopista Fernão Dias">
+    </div>
+
+    <div class="cliente-card">
+      <img src="https://via.placeholder.com/150x60?text=Régis+Bittencourt" alt="Autopista Regis Bittencourt">
+    </div>
+
+    <div class="cliente-card">
+      <img src="https://via.placeholder.com/150x60?text=CAF+Brasil" alt="CAF Brasil">
+    </div>
+
+    <div class="cliente-card">
+      <img src="https://via.placeholder.com/150x60?text=Camargo+Corrêa" alt="Camargo Corrêa">
+    </div>
+
+    <div class="cliente-card">
+      <img src="https://via.placeholder.com/150x60?text=CCDI" alt="CCDI">
+    </div>
+
+    <div class="cliente-card">
+      <img src="https://via.placeholder.com/150x60?text=Ecopistas" alt="Ecopistas">
+    </div>
+  </div>
+</section>
+
+<section id="projetos">
+  <h2>Projetos</h2>
+  <div class="projects">
+    <div class="project-card">
+      <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae">
+      <div class="project-info">
+        <h3>Reforma de Apartamento</h3>
+        <p>Modernização completa com acabamento de alto padrão.</p>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <img src="https://images.unsplash.com/photo-1560185007-cde436f6a4d0">
+      <div class="project-info">
+        <h3>Construção Residencial</h3>
+        <p>Execução do zero com foco em qualidade e durabilidade.</p>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <img src="https://images.unsplash.com/photo-1497366216548-37526070297c">
+      <div class="project-info">
+        <h3>Projeto Comercial</h3>
+        <p>Ambiente moderno e funcional para negócios.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <h2>Fale Conosco</h2>
+  <form>
+    <input type="text" placeholder="Seu nome" required>
+    <input type="email" placeholder="Seu email" required>
+    <textarea rows="5" placeholder="Sua mensagem"></textarea>
+    <button type="submit">Enviar</button>
+  </form>
+  
+</section>
+
+<footer>
+  <p>© 2026 Goldmman - Todos os direitos reservados</p>
+</footer>
+
+<a href="https://wa.me/5511992576561" class="whatsapp">💬</a>
+
+
+<script>
+// Animação suave ao aparecer
+const elements = document.querySelectorAll('.card, .project-card, .diferencial-item');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.style.opacity = 1;
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.2 });
+
+elements.forEach(el => {
+  el.style.opacity = 0;
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'all 0.6s ease';
+  observer.observe(el);
+});
+
+// Formulário funcionando (WhatsApp + Email)
+document.querySelector('form').addEventListener('submit', function(e){
+  e.preventDefault();
+
+  const nome = this.querySelector('input[type="text"]').value;
+  const email = this.querySelector('input[type="email"]').value;
+  const mensagem = this.querySelector('textarea').value;
+
+  const texto = `Nome: ${nome}%0AEmail: ${email}%0AMensagem: ${mensagem}`;
+
+  // WhatsApp
+  window.open(`https://wa.me/5511992576561?text=${texto}`, '_blank');
+
+  // Email
+  window.location.href = `mailto:keikol.312498@gmail.com?subject=Contato pelo site&body=${texto}`;
+});
+</script>
+
+</body>
+</html>
