@@ -1,0 +1,31 @@
+// animação ao aparecer
+const items = document.querySelectorAll('.card');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.style.opacity = 1;
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+});
+
+items.forEach(el => {
+  el.style.opacity = 0;
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = '0.6s';
+  observer.observe(el);
+});
+
+// formulário
+document.querySelector("form").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  const nome = this[0].value;
+  const email = this[1].value;
+  const msg = this[2].value;
+
+  const texto = `Nome: ${nome}%0AEmail: ${email}%0AMensagem: ${msg}`;
+
+  window.open(`https://wa.me/5511992576561?text=${texto}`);
+});
